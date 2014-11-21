@@ -6,13 +6,10 @@
         Purpose of the stylesheet follows.
 */
 
-root { 
-    
-}
 
-body{
-    
-    background-color: black;
-    
-}
 
+
+
+.container{
+	background-color: #1234EF;
+}
