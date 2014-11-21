@@ -1,0 +1,38 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="mainStyles.css">
+        <title>Fun Game</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    <body>
+        
+        <script src="jquery.js"></script>
+                     
+        <div class="bar"></div>
+        
+        <script>
+            
+            $(document).ready(function(){
+               
+               var angle = Math.round(Math.random()*900)/10.0
+               
+               var cssString = "rotate(" + angle.toString() + "deg)";
+               
+               $(".bar").css("height","40px");
+               $(".bar").css("border-width","4px");
+               $(".bar").css("border-style","solid");
+               $(".bar").css("border-color","red");
+               $(".bar").css("background-color","yellow");
+               $(".bar").css("transform", cssString);
+               
+            });
+            
+        </script>
+        
+    </body>
+</html>
