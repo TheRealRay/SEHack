@@ -1,39 +1,10 @@
-
-
 var canvas;
 var surface
-var startScreen;
+var currentScreen;
 var mainGameScreen;
 var mouse;
 var fullCircle = Math.PI * 2;
-var angle = Math.round(Math.random()*900)/10.0;
 
-canvas = document.querySelector('canvas#main-canvas');
-canvas.setAttribute('width', 600);
-canvas.setAttribute('height', 400);
-surface = canvas.getContext('2d');
-ctx.fillStyle = 'black';
-ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-
-
-
-draw(objects, beam){
-	var objectsindex = objects.length-1;
-	for (;objectsindex!=0;objectsindex--){
-		ctx.save();
-		ctx.fillStyle = 'black';
-		ctx.fillRect(ctx.canvas.width/objects[i].xPos, ctx.canvas.height/objects[i].yPos, 20, 20);
-		ctx.restore();
-
-	}
-	ctx.
-
-
-}
-
-
-
-/*
 function beginLoop() {
     var frameId = 0;
     var lastFrame = Date.now();
@@ -45,8 +16,8 @@ function beginLoop() {
 
         frameId = window.requestAnimationFrame(loop);
 
-        startScreen.update(elapsed);
-        startScreen.draw(surface);
+        currentScreen.update(elapsed);
+        currentScreen.draw(surface);
 
         lastFrame = thisFrame;
     }
@@ -56,7 +27,8 @@ function beginLoop() {
 
 canvas = document.querySelector('canvas#main-canvas');
 canvas.setAttribute('width', 600);
-canvas.setAttribute('height', 400);
+canvas.setAttribute('height',400);
+
 surface = canvas.getContext('2d');
 
 mouse = (function (target) {
@@ -75,7 +47,7 @@ mouse = (function (target) {
         }
     };
 }(document));
-/*
+
 function makeEnemyShip(x, y) {
     var position = {
         x: x,
@@ -147,30 +119,33 @@ function makeEnemyShip(x, y) {
 
 // define the main screen for the game
 mainGameScreen = (function () {
+	var xinit = Math.round(Math.random() * 600);
+    var inity = 0;
 
-    
+    function start() {
 
-    function start() {     
+        for (var i = 0; i <= numOfEnemyShips; i++) {
+            entities.push(makeEnemyShip(i * 10, i));
+        }
     }
 
     function draw(ctx) {
-        ctx.fillStyle = 'white';
-        ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+    	
+    	var y = inity + 1
+    	inity = y;
+    	ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+        ctx.fillStyle = 'black';
+        ctx.fillRect(ctx.canvas.width/4, ctx.canvas.height/2+5, ctx.canvas.width/2, 5);
+
+        ctx.fillRect(xinit, y, 5, 5);
+        if (inity == ctx.canvas.height/2+5){
+        	inity = 0;
+        	xinit = Math.round(Math.random() * 600);
+        }
     }
-    function draw(ctx){
-    	ctx.fillRect(ctx.canvas.width/2,ctx.canvas.height/2,ctx.canvas.width,ctx.canvas.height);
-    	cttx.fillStyle = 'white'
-    }
-
-
-
-
 
     function update(elapsed) {
-        var entityIndex = entities.length - 1;
-        for (; entityIndex != 0; entityIndex--) {
-            entities[entityIndex].update(elapsed);
-        }
+        
     }
 
     return {
@@ -179,16 +154,15 @@ mainGameScreen = (function () {
         start: start
     };
 }());
-*/
-// define the start screen
-/*
-startScreen = (function (input) {
 
-    
+// define the start screen
+currentScreen = (function (input) {
+
+    var hue = 0;
     var direction = 1;
     var transitioning = false;
     var wasButtonDown = false;
-    var title = 'ECE 105';
+    var title = 'My Awesome Game';
 
     function centerText(ctx, text, y) {
         var measurement = ctx.measureText(text);
@@ -203,14 +177,13 @@ startScreen = (function (input) {
 
         ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
         ctx.fillStyle = 'white';
-        ctx.font = '48px monospace';
+        ctx.font = '48px Helvetica';
         centerText(ctx, title, y);
 
         ctx.fillStyle = color;
-        ctx.font = '24px monospace';
+        ctx.font = '24px Helvetica';
         centerText(ctx, 'click to begin', y + 30);
     }
-
 
     function update() {
 
@@ -223,8 +196,8 @@ startScreen = (function (input) {
 
         if (mouseJustClicked && !transitioning) {
             transitioning = true;
-            startScreen = mainGameScreen;
-            startScreen.start();
+            currentScreen = mainGameScreen;
+            currentScreen.start();
         }
 
         wasButtonDown = isButtonDown;
@@ -238,6 +211,3 @@ startScreen = (function (input) {
 
 
 beginLoop();
-*/
-
-
