@@ -30,6 +30,15 @@ and open the template in the editor.
                $(".bar").css("background-color","yellow");
                $(".bar").css("transform", cssString);
                
+               document.addEventListener('keydown', function(event) {
+               if(event.keyCode == 37) {
+                    alert('Left was pressed');
+               }
+               else if(event.keyCode == 39) {
+                    alert('Right was pressed');
+                }
+});
+               
             });
             
         </script>
