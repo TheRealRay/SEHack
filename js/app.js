@@ -170,7 +170,7 @@ currentScreen = (function (input) {
         ctx.fillText(text, x, y);
     }
 
-    function draw(ctx) {
+    function draw(ctx, ) {
 
         var y = ctx.canvas.height / 2;
         var color = 'rgb(' + hue + ',0,0)';

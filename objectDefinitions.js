@@ -7,11 +7,10 @@ function Object(m, coef)
     this.yPos = 10.0;
     this.xVel = 0.0;
     this.yVel = 0.0;
-    this.yAcc = -9.8;
+    this.yAcc = -0.2;
     this.xAcc = 0.0;
     this.recentCollision = false;
-    this.arrowRight = 0.0;
-    this.arrowLeft = 0.0;
+    this.arrowAcc = 0.0;
     
 }
 

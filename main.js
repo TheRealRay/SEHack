@@ -1,6 +1,7 @@
 var objects = [];
 var beam = new beam(20.0, 10.0);
 var interval = 0.05;
+var gravityConstant = 0.2;
 
 $(document).ready(function(){
 
@@ -10,6 +11,15 @@ $(document).ready(function(){
     player.xPos = 0.0;
 
     objects.push(player);
+
+    document.addEventListener('keydown', function(event) {
+        if(event.keyCode == 37) {
+             objects[0].arrowAcc = -1.0;
+        }
+        else if(event.keyCode == 39) {
+             objects[0].arrowAcc = 1.0;
+         }
+         });
 
     var objectAddition = setInterval(function(){addNewObject()}, 100);
 
@@ -64,32 +74,36 @@ function updateAcceleration()
     
         if(!onBeam(objects[i].xPos, objects[i].yPos))
         {
-            objects[i].yAcc = -9.8;
+            objects[i].yAcc = -1.0*gravityConst;
             objects[i].xAcc = 0.0;
         }
             
         else
         {
-            objects[i].xAcc += ((objects[i].arrowRight - objects[i].arrowRight) * 15.0);
+
+            objects[i].xAcc = 0.0;
+            objects[i].yAcc = 0.0;
+          
+            objects[i].xAcc += ((object[i].arrowAcc) * 15.0);
          
-            objects[i].yAcc += (9.8*Math.sin(beam.angle)*Math.sin(beam.angle));
-            objects[i].xAcc += (9.8*Math.sin(beam.angle)*Math.cos(beam.angle));
+            objects[i].yAcc += (gravityConst*Math.sin(beam.angle)*Math.sin(beam.angle));
+            objects[i].xAcc += (gravityConst*Math.sin(beam.angle)*Math.cos(beam.angle));
             
-            objects[i].yAcc += -1.0*(9.8*Math.cos(beam.angle)*Math.sin(beam.angle)*object[i].cf*object[i].yVel/abs(object[i].yVel));
-            objects[i].xAcc += -1.0*(9.8*Math.cos(beam.angle)*Math.cos(beam.angle)*object[i].cf*object[i].xVel/abs(object[i].xVel));
+            objects[i].yAcc += -1.0*(gravityConst*Math.cos(beam.angle)*abs(Math.sin(beam.angle))*object[i].cf*object[i].yVel/abs(object[i].yVel));
+            objects[i].xAcc += -1.0*(gravityConst*Math.cos(beam.angle)*Math.cos(beam.angle)*object[i].cf*object[i].xVel/abs(object[i].xVel));
             
-            objects[i].yAcc = (-1*objects[i].yVel * Math.cos(beam.angle)/interval);
-            objects[i].xAcc = (-1*objects[i].xVel * Math.sin(beam.angle)/interval);
+            objects[i].yAcc += (-1.0 * objects[i].yVel / interval);
+            objects[i].xAcc += (-1.0 * objects[i].xVel / interval);
             
             torque += Math.sqrt(objects[i].xAcc*objects[i].xAcc + objects[i].yAcc*objects[i].yAcc)*objects[i].mass
                     *Math.sqrt(objects[i].yPos*objects[i].yPos + objects[i].xPos * objects[i].xPos)*objects[i].xPos/abs(objects[i].xPos); //last entry to check if negative
             
-            torque += objects[i].mass * 9.8 * Math.cos(beam.angle) * Math.sqrt(objects[i].yPos*objects[i].yPos + objects[i].xPos * objects[i].xPos)
+            torque += objects[i].mass * gravityConst * Math.cos(beam.angle) * Math.sqrt(objects[i].yPos*objects[i].yPos + objects[i].xPos * objects[i].xPos)
                     * objects[i].xPos/abs(objects[i].xPos);
             
         }
         
-        beam.radAcc = torque / beam.length*beam.length*beam.mass*(1.0/12.0);
+        beam.radAcc = torque / (beam.length*beam.length*beam.mass*(1.0/12.0));
     
 }
 
@@ -136,7 +150,7 @@ function removeObjects()
 function onBeam(xPos, yPos)
 {
     
-    if(abs(yPos) > abs(Math.tan(xPos - 0.05)) && abs(yPos) > abs(Math.tan(xPos - 0.05)) && Math.sqrt(yPos*yPos + xPos * xPos) <= beam.length)
+    if(abs(yPos/xPos + Math.tan(beam.angle) < 0.1) && Math.sqrt(yPos*yPos + xPos * xPos) <= beam.length)
         return true;
     else
         return false;
