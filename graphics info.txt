@@ -1,0 +1,9 @@
+Falling objects are of the type Object, and an objects array is contained in the main.js file. This array contains all objects currently on the map.
+
+Each object has an yPos and xPos property. This data can be used to print the objects in the correct location.
+
+The range of yPos is 10 to -10. The range of xPos is 15 to -15.
+
+Also, the balance beam can be printed based on its angle (in radians) and length properties.
+
+Peace.

@@ -1,28 +1,23 @@
 <!--
-SE HACK - LET's Goooooo
+To change this template, choose Tools | Templates
+and open the template in the editor.
 -->
 <!DOCTYPE html>
-
 <html>
     <head>
-        <title>Dr.Balogh</title>
-        
-        <!-- css -->
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/mainStyles.css" rel="stylesheet">
-        <!-- fonts -->
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
-
+        <link rel="stylesheet" type="text/css" href="mainStyles.css">
+        <title>Fun Game</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<<<<<<< HEAD
 
 
         <script src='http://cdn.html5quintus.com/v0.2.0/quintus-all.js'></script>
+=======
+>>>>>>> a3848d25cf67217591fa5eaf373ec646514471d6
     </head>
-
-
-
     <body>
         
+<<<<<<< HEAD
         <div class = "container">
           <div class = "page-header">
             <h1>Dr. Balogh</h1>
@@ -57,5 +52,30 @@ SE HACK - LET's Goooooo
         <script src="js/jquery.js"></script>
         <script src="js/app.js"></script>
 
+=======
+        <script src="jquery.js"></script>
+                     
+        <div class="bar"></div>
+        
+        <script>
+            
+            $(document).ready(function(){
+               
+               var angle = Math.round(Math.random()*900)/10.0
+               
+               var cssString = "rotate(" + angle.toString() + "deg)";
+               
+               $(".bar").css("height","40px");
+               $(".bar").css("border-width","4px");
+               $(".bar").css("border-style","solid");
+               $(".bar").css("border-color","red");
+               $(".bar").css("background-color","yellow");
+               $(".bar").css("transform", cssString);
+               
+            });
+            
+        </script>
+        
+>>>>>>> a3848d25cf67217591fa5eaf373ec646514471d6
     </body>
 </html>

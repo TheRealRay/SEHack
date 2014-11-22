@@ -1,0 +1,13 @@
+Hello,
+
+The following is the description of the draw function, draw(objects, beam)
+
+objects coontains an array of objects (defined in objectDefinitions.js). Loop through the loop, and print the objects based on their x and y positions. Please note that the first person is always the person (player). 
+
+Beam contains a single beam object (defined in objectDefinitions.js). The beam object can be printed based on its length and angle (in radians) property.
+
+By the way, y ranges from 10 to -10, and 0 is at the center of the beam. x ranges from 15 to -15, and 0 is at the center of the beam.
+
+Also, if the beam tilts such that the right part points down, its angle is positive.
+
+Please do not worry about the timing for the draw function, as it is called by the physics functions, which are called on a reguler interval.
