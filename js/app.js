@@ -24,10 +24,8 @@ draw(objects, beam){
 		ctx.fillStyle = 'black';
 		ctx.fillRect(ctx.canvas.width/objects[i].xPos, ctx.canvas.height/objects[i].yPos, 20, 20);
 		ctx.restore();
-		
+
 	}
-
-
 	ctx.
 
 
