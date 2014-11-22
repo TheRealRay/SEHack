@@ -13,9 +13,9 @@ function createObject()
    randomNumber = Math.random() * 2;
    
    if(randomNumber > 1)
-       coef = 0.8
+       coef = 0.8;
    else
-       coef = 0.4
+       coef = 0.4;
    
    var object = new Object(m, coef);
     

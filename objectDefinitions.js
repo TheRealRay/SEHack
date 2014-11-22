@@ -9,14 +9,19 @@ function Object(m, coef)
     this.yVel = 0.0;
     this.yAcc = -9.8;
     this.xAcc = 0.0;
+    this.recentCollision = false;
+    this.arrowRight = 0.0;
+    this.arrowLeft = 0.0;
     
 }
 
-function beam(mass, tiltAngle, length)
+function beam(mass, length)
 {
     
     this.mass = mass;
     this.tiltAngle = 0.0;
-    this.length = 10.0;
+    this.radVel = 0.0;
+    this.radAcc = 0.0;
+    this.length = length;
     
 }
